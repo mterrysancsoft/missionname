@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Microsoft.Extensions.PlatformAbstractions;
 using Swashbuckle.AspNetCore.Swagger;
 
@@ -50,6 +45,8 @@ namespace MissionName.API
             string baseDir = env.ContentRootPath;
             AppDomain.CurrentDomain.SetData("DataDirectory", System.IO.Path.Combine(baseDir, "..\\Mission.Data"));
 
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
             app.UseMvc();
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Mission Name V1"));
