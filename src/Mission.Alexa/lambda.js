@@ -15,6 +15,28 @@ Math.seededRandom = function(min,max) {
     return Math.trunc(rnd);
 }
 
+const RandomMissionHandler = {
+  canHandle(handlerInput) {
+    const request = handlerInput.requestEnvelope.request;
+    return request.type === 'LaunchRequest'
+      || (request.type === 'IntentRequest'
+        && request.intent.name === 'RandomMissionIntent');
+  },
+  handle(handlerInput) {
+    // get a random adjective and noun to name the mission
+    const adjectiveIndex = Math.floor(Math.random() * adjectives.length);
+    const nounIndex = Math.floor(Math.random() * nouns.length);
+    // construct the output for voice and display
+    const speechOutput = SPEECH_RANDOM_PREAMBLE + adjectives[adjectiveIndex] + " " + nouns[nounIndex];
+    const cardOutput = CARD_RANDOM_PREAMBLE + adjectives[adjectiveIndex] + " " + nouns[nounIndex];
+
+    return handlerInput.responseBuilder
+      .speak(speechOutput)
+      .withSimpleCard(SKILL_NAME, cardOutput)
+      .getResponse();
+  },
+};
+
 const TodaysMissionHandler = {
   canHandle(handlerInput) {
     const request = handlerInput.requestEnvelope.request;
@@ -31,8 +53,8 @@ const TodaysMissionHandler = {
     const adjectiveIndex = Math.floor(Math.seededRandom(0, adjectives.length ));
     const nounIndex = Math.floor(Math.seededRandom(0, nouns.length));
     // construct the output for voice and display
-    const speechOutput = SPEECH_MISSION_PREAMBLE + adjectives[adjectiveIndex] + " " + nouns[nounIndex];
-    const cardOutput = CARD_MISSION_PREAMBLE + adjectives[adjectiveIndex] + " " + nouns[nounIndex];
+    const speechOutput = SPEECH_TODAY_PREAMBLE + adjectives[adjectiveIndex] + " " + nouns[nounIndex];
+    const cardOutput = CARD_TODAY_PREAMBLE + adjectives[adjectiveIndex] + " " + nouns[nounIndex];
 
     return handlerInput.responseBuilder
       .speak(speechOutput)
@@ -96,9 +118,11 @@ const ErrorHandler = {
 };
 
 const SKILL_NAME = 'XCOM Mission';
-const SPEECH_MISSION_PREAMBLE = "Hello Commander. Today\'s Mission is: Operation ";
-const CARD_MISSION_PREAMBLE = "Operation ";
-const HELP_MESSAGE = 'You can say tell me a space fact, or, you can say exit... What can I help you with?';
+const SPEECH_TODAY_PREAMBLE = "Hello Commander. Today\'s Mission is: Operation ";
+const CARD_TODAY_PREAMBLE = "Operation ";
+const SPEECH_RANDOM_PREAMBLE = "Hello Commander. The Mission is: Operation ";
+const CARD_RANDOM_PREAMBLE = "Operation ";
+const HELP_MESSAGE = 'You can say tell me the mission, or, you can say exit... What can I help you with?';
 const HELP_REPROMPT = 'What can I help you with?';
 const STOP_MESSAGE = 'Goodbye!';
 
@@ -316,6 +340,7 @@ const skillBuilder = Alexa.SkillBuilders.standard();
 
 exports.handler = skillBuilder
   .addRequestHandlers(
+    RandomMissionHandler,
     TodaysMissionHandler,
     HelpHandler,
     ExitHandler,
