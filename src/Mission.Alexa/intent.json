@@ -1,0 +1,40 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "xcom mission",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "TodaysMissionIntent",
+                    "slots": [],
+                    "samples": [
+                        "today's mission",
+                        "tell me the mission",
+                        "activate the xcom protocol",
+                        "what is the mission",
+                        "what is today's mission",
+                        "give me a mission",
+                        "this is the commander",
+                        "a space fact"
+                    ]
+                }
+            ],
+            "types": []
+        }
+    }
+}
