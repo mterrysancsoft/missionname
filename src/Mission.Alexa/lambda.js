@@ -3,6 +3,18 @@
 
 const Alexa = require('ask-sdk');
 
+// define a seed value for the seeded random number generator 
+Math.seed = 123;
+
+// support seeded pseudo-random numbers so that we can get consistent results
+// on a given seed (used to generate consisten results per day)
+Math.seededRandom = function(min,max) {
+    Math.seed = (Math.seed * 9301 + 49297) % 233280;
+    var rnd = Math.seed / 233280;
+    rnd = min + (rnd * (max-min));
+    return Math.trunc(rnd);
+}
+
 const TodaysMissionHandler = {
   canHandle(handlerInput) {
     const request = handlerInput.requestEnvelope.request;
@@ -11,10 +23,16 @@ const TodaysMissionHandler = {
         && request.intent.name === 'TodaysMissionIntent');
   },
   handle(handlerInput) {
-    const adjectiveIndex = Math.floor(Matin.random() * adjectives.length);
-    const nounIndex = Math.floor(Matin.random() * nouns.length);
+    var currentTime = new Date();
+
+    // re-seed the random number generator so we get the same mision for the day
+    Math.seed = currentTime.getDate() + currentTime.getMonth() * 31 +  currentTime.getFullYear() * 372;
+    // get a random adjective and noun to name the mission
+    const adjectiveIndex = Math.floor(Math.seededRandom(0, adjectives.length ));
+    const nounIndex = Math.floor(Math.seededRandom(0, nouns.length));
+    // construct the output for voice and display
     const speechOutput = SPEECH_MISSION_PREAMBLE + adjectives[adjectiveIndex] + " " + nouns[nounIndex];
-    const cardOutput = CARD_PREAMBLE + adjectives[adjectiveIndex] + " " + nouns[nounIndex];
+    const cardOutput = CARD_MISSION_PREAMBLE + adjectives[adjectiveIndex] + " " + nouns[nounIndex];
 
     return handlerInput.responseBuilder
       .speak(speechOutput)
@@ -78,7 +96,7 @@ const ErrorHandler = {
 };
 
 const SKILL_NAME = 'XCOM Mission';
-const SPEECH_MISSION_PREAMBLE = 'Hello Commander. Toda\'ys Mission is: Operation ";;
+const SPEECH_MISSION_PREAMBLE = "Hello Commander. Today\'s Mission is: Operation ";
 const CARD_MISSION_PREAMBLE = "Operation ";
 const HELP_MESSAGE = 'You can say tell me a space fact, or, you can say exit... What can I help you with?';
 const HELP_REPROMPT = 'What can I help you with?';
