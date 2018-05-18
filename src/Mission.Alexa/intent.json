@@ -1,7 +1,7 @@
 {
     "interactionModel": {
         "languageModel": {
-            "invocationName": "xcom mission",
+            "invocationName": "x. com headquarters",
             "intents": [
                 {
                     "name": "AMAZON.CancelIntent",
@@ -30,8 +30,7 @@
                         "tell me the mission",
                         "what is the mission",
                         "what is today's mission",
-                        "this is the commander",
-                        "a space fact"
+                        "this is the commander"
                     ]
                 },
                 {
@@ -39,11 +38,14 @@
                     "slots": [],
                     "samples": [
                         "random",
-                        "What is a random mission name",
-                        "Get an xcom mission",
-                        "Get a mission",
-                        "Tell me a random xcom mission",
-                        "Tell me a random mission"
+                        "random mission",
+                        "name a mission",
+                        "to name a mission",
+                        "give me a mission",
+                        "to give me a mission",
+                        "get a mission",
+                        "for a mission",
+                        "for a mission name"
                     ]
                 }
             ],
