@@ -9,6 +9,23 @@
     <meta name="description" content="XCom Mission Generator - Get today's mission name.">
 
     <title>XCom Mission Generator - Today's Mission</title>
+    <link rel="apple-touch-icon" sizes="57x57" href="assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+    <link rel="manifest" href="assets/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="assets/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -17,14 +34,39 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <style>
+        html {
+            background: url(assets/xcomhq.jpg) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color:#7cdedd;
+        }
+        a {
+            color:#cccccc;
+            text-decoration: none;
+        }
+        h1 { color:white; }
     </style>
 </head>
 
 <body style="text-align:center;">
-    <h2>Today's Mission</h2>
-    <h1>Operation <span id="missionName">...</span></h1>
-    <h2 id="status">Working</h2>
-    <div><a href="/swagger">Documentation</a></div>
+    <div style="width:100%;">
+         <div style="margin:100px auto; padding:20px 20px 20px 20px; width:75%; background-color:rgb(0,0,0,0.7); border:1px solid #7cdedd;">
+            <h2>Today's Mission</h2>
+            <h1>Operation <span id="missionName">...</span></h1>
+            <h2 id="status">Working</h2>
+            <div style="float:right; margin-right:20px;">
+                <a href="https://www.amazon.com/Sanctuary-Software-Studio-Inc-MIssion/dp/B07D3Y1Y4H/">Get the Alexa Skill</a>
+                &nbsp;&bullet;&nbsp;
+                <a href="/swagger">Documentation</a>
+            </div>
+            <br clear="all"/>
+        </div>
+    </div>
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
     <script type="text/javascript">
