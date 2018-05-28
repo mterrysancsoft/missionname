@@ -55,13 +55,14 @@
 
 <body style="text-align:center;">
     <div style="width:100%;">
-         <div style="margin:100px auto; padding:20px 20px 20px 20px; width:75%; background-color:rgb(0,0,0,0.7); border:1px solid #7cdedd;">
+         <div style="margin:100px auto; padding:20px; width:75%; background-color:rgba(0,0,0,0.7); border:1px solid #7cdedd;">
             <h2>Today's Mission</h2>
             <h1>Operation <span id="missionName">...</span></h1>
             <h2 id="status">Working</h2>
-            <div style="float:right; margin-right:20px;">
-                <a href="https://www.amazon.com/Sanctuary-Software-Studio-Inc-MIssion/dp/B07D3Y1Y4H/">Get the Alexa Skill</a>
-                &nbsp;&bullet;&nbsp;
+            <div style="float:left;">
+                <a href="https://www.amazon.com/Sanctuary-Software-Studio-Inc-MIssion/dp/B07D3Y1Y4H/" target="_blank">Get the Alexa Skill</a>
+            </div>
+            <div style="float:right;">
                 <a href="/swagger">Documentation</a>
             </div>
             <br clear="all"/>
@@ -76,7 +77,11 @@
                 type: "GET",
                 success: function (data) {
                     $('#missionName').text(data);
-                    $('#status').text("");
+                    var today = new Date();
+                    var dd = today.getDate();
+                    var mm = today.getMonth() + 1;
+                    var yyyy = today.getFullYear();
+                    $('#status').text(yyyy+'-'+mm+'-'+dd);
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                     $('#missionName').text("Failing Software");
