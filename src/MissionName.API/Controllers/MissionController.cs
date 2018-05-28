@@ -44,7 +44,7 @@ namespace MissionName.API.Controllers
         }
 
         /// <summary>
-        /// Generates a consisten mission name for the supplied date
+        /// Generates a consistent mission name for the supplied date
         /// </summary>
         /// <param name="dt">Date for the mission</param>
         /// <returns>Mission name in Adjective Noun format</returns>
