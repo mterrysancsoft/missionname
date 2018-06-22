@@ -9,11 +9,11 @@ namespace MissionName.Library
     {
         protected List<string> adjectives;
         protected List<string> nouns;
-        protected Random random;
+        protected Randomizer random;
 
         public MissionFactory()
         {
-            random = new System.Random();
+            random = new Randomizer(DateTime.Now.Ticks);
             adjectives = new List<string>();
             nouns = new List<string>();
             adjectives.Add("No");
@@ -22,12 +22,12 @@ namespace MissionName.Library
 
         public MissionFactory(string adjPath, string nounPath)
         {
-            random = new System.Random();
+            random = new Randomizer(DateTime.Now.Ticks);
             adjectives = new List<string>(File.ReadAllLines(adjPath));
             nouns = new List<string>(File.ReadAllLines(nounPath));
         }
 
-        protected Mission PseudoRandom(Random r)
+        protected Mission PseudoRandom(Randomizer r)
         {
             int adjIndex = r.Next(0, adjectives.Count);
             int nounIndex = r.Next(0, nouns.Count);
@@ -36,7 +36,8 @@ namespace MissionName.Library
 
         public Mission Daily(DateTime date)
         {
-            Random r = new System.Random(date.DayOfYear + date.Year * 1000);
+            double seed = date.Day + date.Month * 31 + date.Year * 372;
+            Randomizer r = new Randomizer(seed);
             return PseudoRandom(r);
         }
 
@@ -51,7 +52,7 @@ namespace MissionName.Library
         }
         public Mission Static(int value)
         {
-            Random random = new System.Random(value);
+            Randomizer random = new Randomizer(value);
             return PseudoRandom(random);
         }
     }
