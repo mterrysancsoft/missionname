@@ -1,0 +1,15 @@
+{
+  "name": "mission.discord",
+  "version": "1.0.0",
+  "description": "Discord bot that generates mission names",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "author": "Michael Terry",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^11.4.2",
+    "dotenv": "^6.2.0"
+  }
+}
