@@ -23,8 +23,6 @@ client.on('message', msg => {
         const nounIndex = Math.floor(Math.random() * nouns.length);
         const missionText = SPEECH_RANDOM_PREAMBLE + adjectives[adjectiveIndex] + " " + nouns[nounIndex];
         msg.channel.send(missionText);
-    } else if (msg.content === '!help') {
-        msg.channel.send(missionText);
     } 
 });
 
@@ -45,7 +43,6 @@ Math.seededRandom = function(min,max) {
 
 const SPEECH_TODAY_PREAMBLE = "Hello Commander. Today\'s Mission is Operation ";
 const SPEECH_RANDOM_PREAMBLE = "Hello Commander. The Mission is Operation ";
-const SPEECH_HELP = "Hello Commander. Available commands are '!today', '!mission' and '!help'.";
 
 const adjectives = [
     "Swift",
