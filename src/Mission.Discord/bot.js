@@ -16,7 +16,6 @@ client.on('message', msg => {
         const adjectiveIndex = Math.floor(Math.seededRandom(0, adjectives.length));
         const nounIndex = Math.floor(Math.seededRandom(0, nouns.length));
         const missionText = SPEECH_TODAY_PREAMBLE + adjectives[adjectiveIndex] + " " + nouns[nounIndex];
-        // send the message to discord
         msg.channel.send(missionText);
     } else if (msg.content === '!mission') {
         // get a random adjective and noun to name the mission
