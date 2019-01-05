@@ -8,7 +8,7 @@ client.on('ready', () => {
 
 client.on('message', msg => {
     console.log('Message: ' + msg);
-    if (msg.content === 'today') {
+    if (msg.content === '!today') {
         var currentTime = new Date();
         // re-seed the random number generator so we get the same mision for the day
         Math.seed = currentTime.getDate() + currentTime.getMonth() * 31 +  currentTime.getFullYear() * 372;
@@ -17,16 +17,15 @@ client.on('message', msg => {
         const nounIndex = Math.floor(Math.seededRandom(0, nouns.length));
         const missionText = SPEECH_TODAY_PREAMBLE + adjectives[adjectiveIndex] + " " + nouns[nounIndex];
         // send the message to discord
-        msg.reply(missionText);
-    } else if (msg.content === 'mission') {
+        msg.channel.send(missionText);
+    } else if (msg.content === '!mission') {
         // get a random adjective and noun to name the mission
         const adjectiveIndex = Math.floor(Math.random() * adjectives.length);
         const nounIndex = Math.floor(Math.random() * nouns.length);
         const missionText = SPEECH_RANDOM_PREAMBLE + adjectives[adjectiveIndex] + " " + nouns[nounIndex];
-        // send the message to discord
-        msg.reply(missionText);
-    } else if (msg.content === 'help') {
-        msg.reply(SPEECH_HELP);
+        msg.channel.send(missionText);
+    } else if (msg.content === '!help') {
+        msg.channel.send(missionText);
     } 
 });
 
@@ -47,7 +46,7 @@ Math.seededRandom = function(min,max) {
 
 const SPEECH_TODAY_PREAMBLE = "Hello Commander. Today\'s Mission is Operation ";
 const SPEECH_RANDOM_PREAMBLE = "Hello Commander. The Mission is Operation ";
-const SPEECH_HELP = "Hello Commander. Available commands are 'today', 'mission' and 'help'.";
+const SPEECH_HELP = "Hello Commander. Available commands are '!today', '!mission' and '!help'.";
 
 const adjectives = [
     "Swift",
